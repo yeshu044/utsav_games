@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
     
     # CORS - Fixed to handle string from .env
-    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:5173"
+    ALLOWED_ORIGINS: str = "*"  # Allow all for development
     
     # SMS/OTP (MSG91)
     MSG91_AUTH_KEY: str = ""
@@ -46,6 +46,8 @@ class Settings(BaseSettings):
     @property
     def allowed_origins_list(self) -> List[str]:
         """Convert ALLOWED_ORIGINS string to list."""
+        if self.ALLOWED_ORIGINS == "*":
+            return ["*"]
         return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
     
     class Config:
