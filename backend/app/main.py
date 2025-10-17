@@ -4,7 +4,7 @@ from app.core.config import settings
 from app.database import engine, Base
 
 # Import routers
-from app.api import auth
+from app.api import auth, events, games, levels, media, progress, leaderboard
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -29,6 +29,12 @@ app.add_middleware(
 
 # Include routers
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
+app.include_router(events.router, prefix="/api/events", tags=["Events"])
+app.include_router(games.router, prefix="/api/games", tags=["Games"])
+app.include_router(levels.router, prefix="/api", tags=["Levels"])
+app.include_router(media.router, prefix="/api", tags=["Media"])
+app.include_router(progress.router, prefix="/api", tags=["Progress"])
+app.include_router(leaderboard.router, prefix="/api", tags=["Leaderboard"])
 
 
 @app.get("/")
