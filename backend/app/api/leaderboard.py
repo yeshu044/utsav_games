@@ -7,6 +7,7 @@ from app.schemas.leaderboard import LeaderboardResponse, LeaderboardEntry
 from app.models.progress import UserLevelProgress
 from app.models.user import User
 from app.models.event import Event
+from app.models.level import EventLevel  # ← Added this import
 from app.utils.dependencies import get_current_user
 import json
 
